@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const subject = `Collaboration Submission from ${data.name || ""}`;
         const body = `Hi,\n\nMy name is ${data.name || ""} and I have completed the collaboration form and downloaded the agreement.\n\nPreferred payment method: ${data.payment || ""}`;
         emailLink.innerHTML = `<i class="fas fa-envelope"></i> Send Email`;
-        emailLink.href = `mailt:versedus.collab@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        emailLink.href = `mailto:versedus.collab@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }
     } catch (err) {
       console.warn("afterDownloadSuccess error:", err);
