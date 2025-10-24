@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COLLABORATION</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico">
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+  <!-- Background Floating Effects -->
+  <div class="floating-bg">
+    <div class="circle"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+  </div>
+
+  <div class="loader-container" id="loader">
+    <div class="loader"></div>
+  </div>
+
+  <main class="glass" id="mainContent" style="display:none;">
+    <h1><i class="fas fa-gem"></i>VERSED COLLABORATION</h1>
+    <p>
+      Join our premium campaign. Fill the form, agree to our terms, choose up to
+      <strong>20 items</strong> from our
+      <a href="https://www.versedskin.com/" target="_blank" rel="noopener">Shop Link</a>,
+      and we’ll prepare your package.
+    </p>
+
+    <!-- ---------- FORM START ---------- -->
+    <form id="collabForm" class="collab-form classic" novalidate>
+      <div class="field-grid">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" placeholder="Jane Example" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@domain.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="insta">Instagram handle</label>
+          <input id="insta" name="insta" type="text" placeholder="@yourhandle" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" placeholder="+1 555 123 4567" required>
+        </div>
+      </div>
+
+      <div class="form-group fullwidth">
+        <label for="address">Full delivery address</label>
+        <textarea id="address" name="address" rows="3" placeholder="Street, City, State, ZIP" required></textarea>
+      </div>
+
+      <!-- Payment selector -->
+      <div class="form-group">
+        <label class="section-label">Preferred payment method</label>
+        <input type="hidden" id="paymentMethodHidden" name="paymentMethod" value="Chime">
+
+        <div class="payment-grid" role="radiogroup" aria-label="Payment method">
+          <input type="radio" id="pm-chime" name="pm" value="Chime" checked hidden>
+          <label for="pm-chime" class="payment-card" tabindex="0" role="radio" aria-checked="true">
+            <div class="pc-left">Chime</div>
+            <div class="pc-right">Preferred</div>
+          </label>
+
+          <input type="radio" id="pm-apple" name="pm" value="Apple Pay" hidden>
+          <label for="pm-apple" class="payment-card" tabindex="0" role="radio">
+            <div class="pc-left">Apple Pay</div>
+            <div class="pc-right">Tap to pay</div>
+          </label>
+
+          <input type="radio" id="pm-paypal" name="pm" value="PayPal" hidden>
+          <label for="pm-paypal" class="payment-card" tabindex="0" role="radio">
+            <div class="pc-left">PayPal</div>
+            <div class="pc-right">Secure • Instant</div>
+          </label>
+
+          <input type="radio" id="pm-zelle" name="pm" value="Zelle" hidden>
+          <label for="pm-zelle" class="payment-card" tabindex="0" role="radio">
+            <div class="pc-left">Zelle</div>
+            <div class="pc-right">Instant</div>
+          </label>
+
+          <input type="radio" id="pm-card" name="pm" value="Online Card Purchase" hidden>
+          <label for="pm-card" class="payment-card" tabindex="0" role="radio">
+            <div class="pc-left">Online Card</div>
+            <div class="pc-right">Apple Card / Razer Gold</div>
+          </label>
+
+          <input type="radio" id="pm-binance" name="pm" value="Binance Transfer" hidden>
+          <label for="pm-binance" class="payment-card" tabindex="0" role="radio">
+            <div class="pc-left">Binance</div>
+            <div class="pc-right">Crypto</div>
+          </label>
+
+          <input type="radio" id="pm-bank" name="pm" value="Bank Transfer" hidden>
+          <label for="pm-bank" class="payment-card" tabindex="0" role="radio">
+            <div class="pc-left">Bank Transfer</div>
+            <div class="pc-right">Wire / ACH</div>
+          </label>
+
+          <input type="radio" id="pm-bank" name="pm" value="Bank Transfer" hidden>
+          <label for="pm-bank" class="payment-card" tabindex="0" role="radio">
+            <div class="pc-left">Venmo</div>
+            <div class="pc-right">Relaible</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Image uploads (20 inputs) -->
+      <div class="form-group">
+        <label class="section-label">Upload up to 20 item screenshots</label>
+        <p class="section-description">Take screenshots of the items you want from our <a
+            href="https://www.versedskin.com/" target="_blank">Shop Link</a>. Upload them below: and upload them
+          here.</p>
+
+        <div class="image-upload-grid" id="imageUploadGrid" aria-label="Upload screenshots">
+          <!-- generate 20 file inputs named img1..img20 -->
+          <!-- I'll explicitly include all 20 so the script's for loop aligns -->
+          <div class="upload-cell"><label class="upload-label"><input id="img1" name="img1" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img1">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img2" name="img2" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img2">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img3" name="img3" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img3">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img4" name="img4" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img4">
+            </label></div>
+
+          <div class="upload-cell"><label class="upload-label"><input id="img5" name="img5" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img5">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img6" name="img6" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img6">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img7" name="img7" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img7">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img8" name="img8" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img8">
+            </label></div>
+
+          <div class="upload-cell"><label class="upload-label"><input id="img9" name="img9" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img9">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img10" name="img10" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img10">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img11" name="img11" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img11">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img12" name="img12" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img12">
+            </label></div>
+
+          <div class="upload-cell"><label class="upload-label"><input id="img13" name="img13" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img13">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img14" name="img14" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img14">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img15" name="img15" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img15">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img16" name="img16" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img16">
+            </label></div>
+
+          <div class="upload-cell"><label class="upload-label"><input id="img17" name="img17" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img17">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img18" name="img18" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img18">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img19" name="img19" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img19">
+            </label></div>
+          <div class="upload-cell"><label class="upload-label"><input id="img20" name="img20" type="file"
+                accept="image/*">
+              <div class="upload-placeholder">+</div><img class="thumb" alt="preview img20">
+            </label></div>
+        </div>
+      </div>
+
+      <label class="terms">
+        <input type="checkbox" id="agree" required>
+        <span>I agree to the <a href="versed.pdf" target="_blank">Collaboration Terms & Conditions</a></span>
+      </label>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-glow submit-primary">Submit & Preview</button>
+      </div>
+    </form>
+    <!-- ---------- FORM END ---------- -->
+
+    <!-- Success UI -->
+    <div id="success" style="display:none; margin-top:18px;">
+      <h3>You're In!</h3>
+      <p>Your collaboration PDF is ready. Please send it to us via:</p>
+      <div class="contact-icons">
+        <a href="#" id="emailLink" class="mail-button">
+          <i class="fa-solid fa-envelope"></i> Email
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Preview Modal -->
+  <div id="previewModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3>Preview Your Submission</h3>
+      <p><strong>Name:</strong> <span id="previewName"></span></p>
+      <p><strong>Instagram:</strong> <span id="previewInsta"></span></p>
+      <p><strong>Email:</strong> <span id="previewEmail"></span></p>
+      <p><strong>Payment:</strong> <span id="previewPayment"></span></p>
+
+      <div class="preview-images" id="previewImages"></div>
+
+      <div class="modal-buttons">
+        <button id="confirmDownload" class="btn-glow">Confirm & Download PDF</button>
+        <button id="cancelPreview" class="btn-glow" style="background:#ccc; color:#333;">Edit Info</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
